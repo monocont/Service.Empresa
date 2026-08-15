@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LiEwZPPY1hc=",
+  "dgSpecHash": "HK73Vzw4gO4=",
   "success": true,
-  "projectFilePath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj",
+  "projectFilePath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marvi\\.nuget\\packages\\fluentvalidation\\11.12.0\\fluentvalidation.11.12.0.nupkg.sha512",
     "C:\\Users\\marvi\\.nuget\\packages\\mediatr\\12.5.0\\mediatr.12.5.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NxclaHvwG5s=",
+  "dgSpecHash": "Rdun+vu2hT4=",
   "success": true,
-  "projectFilePath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj",
+  "projectFilePath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marvi\\.nuget\\packages\\mediatr\\12.5.0\\mediatr.12.5.0.nupkg.sha512",
     "C:\\Users\\marvi\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

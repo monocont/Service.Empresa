@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "viildlNc1FU=",
+  "dgSpecHash": "Z7/s35v8nEg=",
   "success": true,
-  "projectFilePath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
+  "projectFilePath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marvi\\.nuget\\packages\\fluentvalidation\\11.12.0\\fluentvalidation.11.12.0.nupkg.sha512",
     "C:\\Users\\marvi\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.12.0\\fluentvalidation.dependencyinjectionextensions.11.12.0.nupkg.sha512",

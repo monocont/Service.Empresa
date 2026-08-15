@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj": {}
+    "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj": {}
   },
   "projects": {
-    "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj": {
+    "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
+        "projectUniqueName": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
         "projectName": "Service.Empresa.API",
-        "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
+        "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
         "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
-        "outputPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\obj\\",
+        "outputPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,11 +33,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj": {
-                "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj"
+              "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj": {
+                "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj"
               },
-              "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj": {
-                "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj"
+              "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj": {
+                "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj"
               }
             }
           }
@@ -513,14 +513,14 @@
         }
       }
     },
-    "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj": {
+    "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj",
+        "projectUniqueName": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj",
         "projectName": "Service.Empresa.Application",
-        "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj",
+        "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj",
         "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
-        "outputPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\obj\\",
+        "outputPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -542,8 +542,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj": {
-                "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj"
+              "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj": {
+                "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj"
               }
             }
           }
@@ -868,14 +868,14 @@
         }
       }
     },
-    "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj": {
+    "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj",
+        "projectUniqueName": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj",
         "projectName": "Service.Empresa.Domain",
-        "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj",
+        "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj",
         "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
-        "outputPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\obj\\",
+        "outputPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1215,14 +1215,14 @@
         }
       }
     },
-    "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj": {
+    "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj",
+        "projectUniqueName": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj",
         "projectName": "Service.Empresa.Infrastructure",
-        "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj",
+        "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
-        "outputPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\obj\\",
+        "outputPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1244,11 +1244,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj": {
-                "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj"
+              "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj": {
+                "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj"
               },
-              "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj": {
-                "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj"
+              "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj": {
+                "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Domain\\Service.Empresa.Domain.csproj"
               }
             }
           }

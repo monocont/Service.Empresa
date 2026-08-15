@@ -3135,11 +3135,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
+      "projectUniqueName": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
       "projectName": "Service.Empresa.API",
-      "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
+      "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\Service.Empresa.API.csproj",
       "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
-      "outputPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.API\\obj\\",
+      "outputPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3161,11 +3161,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj": {
-              "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj"
+            "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj": {
+              "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Application\\Service.Empresa.Application.csproj"
             },
-            "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj": {
-              "projectPath": "D:\\TESIS\\ANALISIS\\source\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj"
+            "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj": {
+              "projectPath": "D:\\TESIS\\ANALISIS\\APP\\BackEnd\\Service.Empresa\\Service.Empresa.Infrastructure\\Service.Empresa.Infrastructure.csproj"
             }
           }
         }
