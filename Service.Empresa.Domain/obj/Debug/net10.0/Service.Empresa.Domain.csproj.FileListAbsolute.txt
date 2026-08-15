@@ -1,0 +1,12 @@
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\bin\Debug\net10.0\Service.Empresa.Domain.deps.json
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\bin\Debug\net10.0\Service.Empresa.Domain.dll
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\bin\Debug\net10.0\Service.Empresa.Domain.pdb
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\Service.Empresa.Domain.csproj.AssemblyReference.cache
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\Service.Empresa.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\Service.Empresa.Domain.AssemblyInfoInputs.cache
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\Service.Empresa.Domain.AssemblyInfo.cs
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\Service.Empresa.Domain.csproj.CoreCompileInputs.cache
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\Service.Empresa.Domain.dll
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\refint\Service.Empresa.Domain.dll
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\Service.Empresa.Domain.pdb
+D:\TESIS\ANALISIS\source\Service.Empresa\Service.Empresa.Domain\obj\Debug\net10.0\ref\Service.Empresa.Domain.dll

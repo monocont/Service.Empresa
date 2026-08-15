@@ -1,0 +1,15 @@
+namespace Service.Empresa.Application.DTOs.Empresa;
+
+public class ActualizarEmpresaRequest
+{
+    public string Ruc { get; set; } = "";
+    public string RazonSocial { get; set; } = "";
+    public string NombreComercial { get; set; } = "";
+    public string CodigoRegimenTributario { get; set; } = "";
+    public string CodigoEstadoContribuyente { get; set; } = "";
+    public string CodigoCondicionContribuyente { get; set; } = "";
+    public string DireccionFiscal { get; set; } = "";
+    public string Ubigeo { get; set; } = "";
+    public string MonedaBase { get; set; } = "PEN";
+    public string? LogoUrl { get; set; }
+}
