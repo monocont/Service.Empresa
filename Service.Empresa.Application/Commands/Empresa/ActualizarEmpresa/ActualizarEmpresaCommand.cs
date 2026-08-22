@@ -17,4 +17,6 @@ public class ActualizarEmpresaCommand : IRequest<CrearEmpresaDTO>
     public string MonedaBase { get; set; } = "PEN";
     public string? LogoUrl { get; set; }
     public string ModificadoPor { get; set; } = "";
+    public Guid IdUsuario { get; set; }
+    public bool EsAdmin { get; set; }
 }

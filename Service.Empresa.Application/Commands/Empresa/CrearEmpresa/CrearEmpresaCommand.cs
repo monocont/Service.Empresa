@@ -16,4 +16,5 @@ public class CrearEmpresaCommand : IRequest<CrearEmpresaDTO>
     public string MonedaBase { get; set; } = "PEN";
     public string? LogoUrl { get; set; }
     public string CreadoPor { get; set; } = "";
+    public Guid IdUsuario { get; set; }
 }

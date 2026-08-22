@@ -19,7 +19,7 @@ public class ListarEmpresasQueryHandler : IRequestHandler<ListarEmpresasQuery, L
             request.Ruc, 
             request.RazonSocial, 
             request.CodigoRegimenTributario,
-            request.CreadoPor, 
+            request.IdUsuario, 
             request.PageNumber, 
             request.PageSize, 
             cancellationToken);

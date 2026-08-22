@@ -23,6 +23,11 @@ public class CredencialSunatController : ControllerBase
         _mediator = mediator;
     }
 
+    private Guid ObtenerIdUsuario() =>
+        Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var id) ? id : Guid.Empty;
+
+    private bool EsAdmin() => User.IsInRole("ADMIN");
+
     [HttpPost]
     public async Task<IActionResult> Crear(Guid idEmpresa, [FromBody] CrearCredencialSunatRequest request)
     {
@@ -32,7 +37,9 @@ public class CredencialSunatController : ControllerBase
             IdEmpresa = idEmpresa,
             UsuarioSol = request.UsuarioSol,
             ClaveSol = request.ClaveSol,
-            CreadoPor = userId
+            CreadoPor = userId,
+            IdUsuario = ObtenerIdUsuario(),
+            EsAdmin = EsAdmin()
         };
         var result = await _mediator.Send(command);
         return Ok(result);
@@ -41,7 +48,7 @@ public class CredencialSunatController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Obtener(Guid idEmpresa)
     {
-        var result = await _mediator.Send(new ObtenerCredencialSunatQuery { IdEmpresa = idEmpresa });
+        var result = await _mediator.Send(new ObtenerCredencialSunatQuery { IdEmpresa = idEmpresa, IdUsuario = ObtenerIdUsuario(), EsAdmin = EsAdmin() });
         if (result is null)
         {
             HttpContext.Items["ResponseMessages"] = new List<string> { "La empresa no tiene una credencial SUNAT registrada." };
@@ -60,7 +67,9 @@ public class CredencialSunatController : ControllerBase
             IdCredencial = request.IdCredencial,
             UsuarioSol = request.UsuarioSol,
             ClaveSol = request.ClaveSol,
-            CreadoPor = userId
+            CreadoPor = userId,
+            IdUsuario = ObtenerIdUsuario(),
+            EsAdmin = EsAdmin()
         };
         var result = await _mediator.Send(command);
         return Ok(result);
@@ -72,7 +81,9 @@ public class CredencialSunatController : ControllerBase
         await _mediator.Send(new EliminarCredencialSunatCommand
         {
             IdEmpresa = idEmpresa,
-            IdCredencial = idCredencial
+            IdCredencial = idCredencial,
+            IdUsuario = ObtenerIdUsuario(),
+            EsAdmin = EsAdmin()
         });
         return Ok(new { mensaje = "Credencial SUNAT eliminada correctamente." });
     }

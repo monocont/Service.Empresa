@@ -26,10 +26,14 @@ public class EmpresaRepository : IEmpresaRepository
 
     public async Task<(List<Domain.Entities.Empresa> items, int total)> ObtenerConFiltrosYPaginacionAsync(
         string? ruc, string? razonSocial, string? codigoRegimenTributario,
-        string creadoPor, int pageNumber, int pageSize, CancellationToken cancellationToken)
+        Guid idUsuario, int pageNumber, int pageSize, CancellationToken cancellationToken)
     {
+        var empresasDelUsuario = _context.UsuarioEmpresa
+            .Where(ue => ue.IdUsuario == idUsuario)
+            .Select(ue => ue.IdEmpresa);
+
         var query = _context.Empresa
-            .Where(e => e.CreadoPor == creadoPor);
+            .Where(e => empresasDelUsuario.Contains(e.IdEmpresa));
 
         if (!string.IsNullOrWhiteSpace(ruc))
         {

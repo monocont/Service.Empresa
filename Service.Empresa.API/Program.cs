@@ -92,6 +92,7 @@ builder.Services.AddControllers();
         builder.Services.AddMemoryCache();
 
         builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+builder.Services.AddScoped<IUsuarioEmpresaRepository, UsuarioEmpresaRepository>();
         builder.Services.AddScoped<ICredencialSunatRepository, CredencialSunatRepository>();
         builder.Services.AddScoped<ITablaMaestraService, TablaMaestraService>();
 

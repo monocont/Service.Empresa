@@ -8,10 +8,12 @@ namespace Service.Empresa.Application.Queries.Empresa.ObtenerEmpresaPorRuc;
 public class ObtenerEmpresaPorRucQueryHandler : IRequestHandler<ObtenerEmpresaPorRucQuery, ObtenerEmpresaPorRucDTO>
 {
     private readonly IEmpresaRepository _empresaRepository;
+    private readonly IUsuarioEmpresaRepository _usuarioEmpresaRepository;
 
-    public ObtenerEmpresaPorRucQueryHandler(IEmpresaRepository empresaRepository)
+    public ObtenerEmpresaPorRucQueryHandler(IEmpresaRepository empresaRepository, IUsuarioEmpresaRepository usuarioEmpresaRepository)
     {
         _empresaRepository = empresaRepository;
+        _usuarioEmpresaRepository = usuarioEmpresaRepository;
     }
 
     public async Task<ObtenerEmpresaPorRucDTO> Handle(ObtenerEmpresaPorRucQuery request, CancellationToken cancellationToken)
@@ -20,6 +22,13 @@ public class ObtenerEmpresaPorRucQueryHandler : IRequestHandler<ObtenerEmpresaPo
 
         if (empresa is null)
             throw new NotFoundException($"No se encontró una empresa con el RUC {request.Ruc}.");
+
+        if (!request.EsAdmin)
+        {
+            var acceso = await _usuarioEmpresaRepository.ObtenerPorUsuarioYEmpresaAsync(request.IdUsuario, empresa.IdEmpresa);
+            if (acceso is null)
+                throw new UnauthorizedAccessException("No tiene acceso a esta empresa.");
+        }
 
         return new ObtenerEmpresaPorRucDTO
         {

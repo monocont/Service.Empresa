@@ -7,13 +7,16 @@ namespace Service.Empresa.Application.Commands.CredencialSunat.Crear;
 public class CrearCredencialSunatCommandHandler : IRequestHandler<CrearCredencialSunatCommand, CredencialSunatDTO>
 {
     private readonly ICredencialSunatRepository _credencialRepository;
+    private readonly IUsuarioEmpresaRepository _usuarioEmpresaRepository;
     private readonly IEmpresaRepository _empresaRepository;
 
     public CrearCredencialSunatCommandHandler(
         ICredencialSunatRepository credencialRepository,
+        IUsuarioEmpresaRepository usuarioEmpresaRepository,
         IEmpresaRepository empresaRepository)
     {
         _credencialRepository = credencialRepository;
+        _usuarioEmpresaRepository = usuarioEmpresaRepository;
         _empresaRepository = empresaRepository;
     }
 
@@ -22,6 +25,13 @@ public class CrearCredencialSunatCommandHandler : IRequestHandler<CrearCredencia
         var empresa = await _empresaRepository.ObtenerPorIdAsync(request.IdEmpresa);
         if (empresa is null)
             throw new ArgumentException("La empresa no existe.");
+        if (!request.EsAdmin)
+        {
+            var acceso = await _usuarioEmpresaRepository.ObtenerPorUsuarioYEmpresaAsync(request.IdUsuario, empresa.IdEmpresa);
+            if (acceso is null)
+                throw new UnauthorizedAccessException("No tiene acceso a esta empresa.");
+        }
+
 
         var existe = await _credencialRepository.ObtenerPorEmpresaAsync(request.IdEmpresa);
         if (existe is not null)

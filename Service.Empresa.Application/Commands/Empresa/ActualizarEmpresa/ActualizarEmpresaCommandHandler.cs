@@ -8,10 +8,12 @@ namespace Service.Empresa.Application.Commands.Empresa.ActualizarEmpresa;
 public class ActualizarEmpresaCommandHandler : IRequestHandler<ActualizarEmpresaCommand, CrearEmpresaDTO>
 {
     private readonly IEmpresaRepository _empresaRepository;
+    private readonly IUsuarioEmpresaRepository _usuarioEmpresaRepository;
 
-    public ActualizarEmpresaCommandHandler(IEmpresaRepository empresaRepository)
+    public ActualizarEmpresaCommandHandler(IEmpresaRepository empresaRepository, IUsuarioEmpresaRepository usuarioEmpresaRepository)
     {
         _empresaRepository = empresaRepository;
+        _usuarioEmpresaRepository = usuarioEmpresaRepository;
     }
 
     public async Task<CrearEmpresaDTO> Handle(ActualizarEmpresaCommand request, CancellationToken cancellationToken)
@@ -20,6 +22,13 @@ public class ActualizarEmpresaCommandHandler : IRequestHandler<ActualizarEmpresa
 
         if (empresa is null)
             throw new NotFoundException(nameof(Domain.Entities.Empresa), request.Id);
+
+        if (!request.EsAdmin)
+        {
+            var acceso = await _usuarioEmpresaRepository.ObtenerPorUsuarioYEmpresaAsync(request.IdUsuario, empresa.IdEmpresa);
+            if (acceso is null)
+                throw new UnauthorizedAccessException("No tiene acceso a esta empresa.");
+        }
 
         var existeOtroRuc = await _empresaRepository.RucDisponibleAsync(request.Ruc, request.ModificadoPor, request.Id);
         if (!existeOtroRuc)

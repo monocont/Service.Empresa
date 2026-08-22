@@ -7,10 +7,12 @@ namespace Service.Empresa.Application.Commands.Empresa.CrearEmpresa;
 public class CrearEmpresaCommandHandler : IRequestHandler<CrearEmpresaCommand, CrearEmpresaDTO>
 {
     private readonly IEmpresaRepository _empresaRepository;
+    private readonly IUsuarioEmpresaRepository _usuarioEmpresaRepository;
 
-    public CrearEmpresaCommandHandler(IEmpresaRepository empresaRepository)
+    public CrearEmpresaCommandHandler(IEmpresaRepository empresaRepository, IUsuarioEmpresaRepository usuarioEmpresaRepository)
     {
         _empresaRepository = empresaRepository;
+        _usuarioEmpresaRepository = usuarioEmpresaRepository;
     }
 
     public async Task<CrearEmpresaDTO> Handle(CrearEmpresaCommand request, CancellationToken cancellationToken)
@@ -35,6 +37,10 @@ public class CrearEmpresaCommandHandler : IRequestHandler<CrearEmpresaCommand, C
             request.CreadoPor);
 
         await _empresaRepository.AgregarAsync(empresa);
+
+        // El creador queda registrado como dueño de la empresa (en memoria; el commit es único)
+        var propiedad = Domain.Entities.UsuarioEmpresa.Crear(request.IdUsuario, empresa.IdEmpresa, "DUENO", request.CreadoPor);
+        await _usuarioEmpresaRepository.AgregarAsync(propiedad);
 
         await _empresaRepository.CommitAsync();
 

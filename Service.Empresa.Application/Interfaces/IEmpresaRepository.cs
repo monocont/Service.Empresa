@@ -11,7 +11,7 @@ public interface IEmpresaRepository
     Task<List<Domain.Entities.Empresa>> ObtenerTodosPorUsuarioAsync(string creadoPor);
     Task<(List<Domain.Entities.Empresa> items, int total)> ObtenerConFiltrosYPaginacionAsync(
         string? ruc, string? razonSocial, string? codigoRegimenTributario,
-        string creadoPor, int pageNumber, int pageSize, CancellationToken cancellationToken);
+        Guid idUsuario, int pageNumber, int pageSize, CancellationToken cancellationToken);
     Task<bool> RucDisponibleAsync(string ruc, string creadoPor, Guid? excludeId);
     Task AgregarAsync(Domain.Entities.Empresa empresa);
     Task CommitAsync();

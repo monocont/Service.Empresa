@@ -10,6 +10,7 @@ public class EmpresaDbContext : DbContext
     public DbSet<Domain.Entities.EstadoContribuyente> EstadoContribuyente => Set<Domain.Entities.EstadoContribuyente>();
     public DbSet<Domain.Entities.CondicionContribuyente> CondicionContribuyente => Set<Domain.Entities.CondicionContribuyente>();
     public DbSet<Domain.Entities.CredencialSunat> CredencialSunat => Set<Domain.Entities.CredencialSunat>();
+    public DbSet<Domain.Entities.UsuarioEmpresa> UsuarioEmpresa => Set<Domain.Entities.UsuarioEmpresa>();
 
     public EmpresaDbContext(DbContextOptions<EmpresaDbContext> options) : base(options) { }
 
@@ -96,6 +97,23 @@ public class EmpresaDbContext : DbContext
             entity.Property(e => e.ClaveSol).HasColumnName("clave_sol").HasMaxLength(100).IsRequired();
             entity.Property(e => e.CreadoPor).HasColumnName("creado_por").HasMaxLength(150);
             entity.Property(e => e.FechaCreacion).HasColumnName("fecha_creacion");
+            entity.Property(e => e.ModificadoPor).HasColumnName("modificado_por").HasMaxLength(150);
+            entity.Property(e => e.FechaModificacion).HasColumnName("fecha_modificacion");
+            entity.Property(e => e.Activo).HasColumnName("activo").IsRequired().HasDefaultValue(true);
+            entity.HasQueryFilter(e => e.Activo);
+        });
+        modelBuilder.Entity<Domain.Entities.UsuarioEmpresa>(entity =>
+        {
+            entity.ToTable("usuario_empresa");
+            entity.HasKey(e => e.IdUsuarioEmpresa);
+            entity.Property(e => e.IdUsuarioEmpresa).HasColumnName("id_usuario_empresa");
+            entity.Property(e => e.IdUsuario).HasColumnName("id_usuario").IsRequired();
+            entity.Property(e => e.IdEmpresa).HasColumnName("id_empresa").IsRequired();
+            entity.Property(e => e.Rol).HasColumnName("rol").HasMaxLength(15).IsRequired().HasDefaultValue("DUENO");
+            entity.HasIndex(e => new { e.IdUsuario, e.IdEmpresa }).IsUnique().HasDatabaseName("uk_usuario_empresa");
+            entity.HasOne<Domain.Entities.Empresa>().WithMany().HasForeignKey(e => e.IdEmpresa);
+            entity.Property(e => e.CreadoPor).HasColumnName("creado_por").HasMaxLength(150);
+            entity.Property(e => e.FechaCreacion).HasColumnName("fecha_creacion").IsRequired();
             entity.Property(e => e.ModificadoPor).HasColumnName("modificado_por").HasMaxLength(150);
             entity.Property(e => e.FechaModificacion).HasColumnName("fecha_modificacion");
             entity.Property(e => e.Activo).HasColumnName("activo").IsRequired().HasDefaultValue(true);

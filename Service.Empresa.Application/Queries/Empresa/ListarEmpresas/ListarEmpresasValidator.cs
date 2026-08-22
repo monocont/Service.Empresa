@@ -6,8 +6,8 @@ public class ListarEmpresasValidator : AbstractValidator<ListarEmpresasQuery>
 {
     public ListarEmpresasValidator()
     {
-        RuleFor(x => x.CreadoPor)
-            .NotEmpty().WithMessage("El usuario 'CreadoPor' es obligatorio.");
+        RuleFor(x => x.IdUsuario)
+            .NotEmpty().WithMessage("El usuario es obligatorio.");
 
         RuleFor(x => x.Ruc)
             .MaximumLength(11).WithMessage("El RUC no puede exceder los 11 caracteres.")

@@ -9,6 +9,7 @@ using Service.Empresa.Application.Interfaces;
 using Service.Empresa.Application.Queries.Empresa.ListarEmpresas;
 using Service.Empresa.Application.Queries.Empresa.ObtenerEmpresaPorId;
 using Service.Empresa.Application.Queries.Empresa.ObtenerEmpresaPorRuc;
+using Service.Empresa.Application.Queries.Empresa.ValidarAccesoEmpresa;
 
 namespace Service.Empresa.API.Controllers;
 
@@ -26,6 +27,12 @@ public class EmpresaController : ControllerBase
         _tablaMaestraService = tablaMaestraService;
     }
 
+
+    private Guid ObtenerIdUsuario() =>
+        Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var id) ? id : Guid.Empty;
+
+    private bool EsAdmin() => User.IsInRole("ADMIN");
+
     [HttpPost]
     public async Task<IActionResult> CrearEmpresa([FromBody] CrearEmpresaRequest request)
     {
@@ -42,7 +49,8 @@ public class EmpresaController : ControllerBase
             Ubigeo = request.Ubigeo,
             MonedaBase = request.MonedaBase,
             LogoUrl = request.LogoUrl,
-            CreadoPor = userId
+            CreadoPor = userId,
+            IdUsuario = ObtenerIdUsuario()
         };
         var result = await _mediator.Send(command);
         return Ok(result);
@@ -59,7 +67,7 @@ public class EmpresaController : ControllerBase
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "Sistema";
         var query = new ListarEmpresasQuery
         {
-            CreadoPor = userId,
+            IdUsuario = ObtenerIdUsuario(),
             Ruc = ruc,
             RazonSocial = razonSocial,
             CodigoRegimenTributario = codigoRegimenTributario,
@@ -87,7 +95,9 @@ public class EmpresaController : ControllerBase
             Ubigeo = request.Ubigeo,
             MonedaBase = request.MonedaBase,
             LogoUrl = request.LogoUrl,
-            ModificadoPor = userId
+            ModificadoPor = userId,
+            IdUsuario = ObtenerIdUsuario(),
+            EsAdmin = EsAdmin()
         };
         var result = await _mediator.Send(command);
         return Ok(result);
@@ -96,14 +106,32 @@ public class EmpresaController : ControllerBase
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> ObtenerEmpresaPorId(Guid id)
     {
-        var result = await _mediator.Send(new ObtenerEmpresaPorIdQuery { Id = id });
+        var result = await _mediator.Send(new ObtenerEmpresaPorIdQuery { Id = id, IdUsuario = ObtenerIdUsuario(), EsAdmin = EsAdmin() });
         return Ok(result);
     }
 
     [HttpGet("ruc/{ruc}")]
     public async Task<IActionResult> ObtenerEmpresaPorRuc(string ruc)
     {
-        var result = await _mediator.Send(new ObtenerEmpresaPorRucQuery { Ruc = ruc });
+        var result = await _mediator.Send(new ObtenerEmpresaPorRucQuery { Ruc = ruc, IdUsuario = ObtenerIdUsuario(), EsAdmin = EsAdmin() });
+        return Ok(result);
+    }
+
+
+    /// <summary>
+    /// Determina si el usuario del JWT tiene acceso a la empresa del RUC indicado.
+    /// Consumido por otros microservicios (delegación de autorización multi-tenant).
+    /// </summary>
+    [HttpGet("{ruc}/acceso")]
+    public async Task<IActionResult> ValidarAcceso(string ruc)
+    {
+        var query = new ValidarAccesoEmpresaQuery
+        {
+            Ruc = ruc,
+            IdUsuario = ObtenerIdUsuario(),
+            EsAdmin = EsAdmin()
+        };
+        var result = await _mediator.Send(query);
         return Ok(result);
     }
 

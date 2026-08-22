@@ -5,7 +5,7 @@ namespace Service.Empresa.Application.Queries.Empresa.ListarEmpresas;
 
 public class ListarEmpresasQuery : IRequest<ListarEmpresasDTO>
 {
-    public string CreadoPor { get; set; } = "";
+    public Guid IdUsuario { get; set; }
     public string? Ruc { get; set; }
     public string? RazonSocial { get; set; }
     public string? CodigoRegimenTributario { get; set; }

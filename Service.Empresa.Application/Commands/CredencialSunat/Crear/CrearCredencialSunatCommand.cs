@@ -9,4 +9,6 @@ public class CrearCredencialSunatCommand : IRequest<CredencialSunatDTO>
     public string UsuarioSol { get; set; } = "";
     public string ClaveSol { get; set; } = "";
     public string CreadoPor { get; set; } = "";
+    public Guid IdUsuario { get; set; }
+    public bool EsAdmin { get; set; }
 }
