@@ -11,6 +11,7 @@ public class EmpresaDbContext : DbContext
     public DbSet<Domain.Entities.CondicionContribuyente> CondicionContribuyente => Set<Domain.Entities.CondicionContribuyente>();
     public DbSet<Domain.Entities.CredencialSunat> CredencialSunat => Set<Domain.Entities.CredencialSunat>();
     public DbSet<Domain.Entities.UsuarioEmpresa> UsuarioEmpresa => Set<Domain.Entities.UsuarioEmpresa>();
+    public DbSet<Domain.Entities.RegimenTributarioLimite> RegimenTributarioLimite => Set<Domain.Entities.RegimenTributarioLimite>();
 
     public EmpresaDbContext(DbContextOptions<EmpresaDbContext> options) : base(options) { }
 
@@ -112,6 +113,32 @@ public class EmpresaDbContext : DbContext
             entity.Property(e => e.Rol).HasColumnName("rol").HasMaxLength(15).IsRequired().HasDefaultValue("DUENO");
             entity.HasIndex(e => new { e.IdUsuario, e.IdEmpresa }).IsUnique().HasDatabaseName("uk_usuario_empresa");
             entity.HasOne<Domain.Entities.Empresa>().WithMany().HasForeignKey(e => e.IdEmpresa);
+            entity.Property(e => e.CreadoPor).HasColumnName("creado_por").HasMaxLength(150);
+            entity.Property(e => e.FechaCreacion).HasColumnName("fecha_creacion").IsRequired();
+            entity.Property(e => e.ModificadoPor).HasColumnName("modificado_por").HasMaxLength(150);
+            entity.Property(e => e.FechaModificacion).HasColumnName("fecha_modificacion");
+            entity.Property(e => e.Activo).HasColumnName("activo").IsRequired().HasDefaultValue(true);
+            entity.HasQueryFilter(e => e.Activo);
+        });
+
+        modelBuilder.Entity<Domain.Entities.RegimenTributarioLimite>(entity =>
+        {
+            entity.ToTable("regimen_tributario_limite");
+            entity.HasKey(e => e.IdLimite);
+            entity.Property(e => e.IdLimite).HasColumnName("id_limite");
+            entity.Property(e => e.CodigoRegimenTributario).HasColumnName("codigo_regimen_tributario").HasMaxLength(10).IsRequired();
+            entity.Property(e => e.Anio).HasColumnName("anio").IsRequired();
+            entity.Property(e => e.ValorUit).HasColumnName("valor_uit").HasColumnType("numeric(10, 2)").IsRequired();
+            entity.Property(e => e.LimiteMensualVentas).HasColumnName("limite_mensual_ventas").HasColumnType("numeric(12, 2)");
+            entity.Property(e => e.LimiteMensualCompras).HasColumnName("limite_mensual_compras").HasColumnType("numeric(12, 2)");
+            entity.Property(e => e.LimiteAnualVentas).HasColumnName("limite_anual_ventas").HasColumnType("numeric(12, 2)");
+            entity.Property(e => e.LimiteAnualCompras).HasColumnName("limite_anual_compras").HasColumnType("numeric(12, 2)");
+            entity.Property(e => e.LimiteAnualVentasUit).HasColumnName("limite_anual_ventas_uit");
+            entity.HasIndex(e => new { e.CodigoRegimenTributario, e.Anio, e.Activo }).IsUnique().HasDatabaseName("uk_regimen_anio_activo");
+            entity.HasOne(e => e.RegimenTributario)
+                  .WithMany()
+                  .HasForeignKey(e => e.CodigoRegimenTributario)
+                  .OnDelete(DeleteBehavior.Restrict);
             entity.Property(e => e.CreadoPor).HasColumnName("creado_por").HasMaxLength(150);
             entity.Property(e => e.FechaCreacion).HasColumnName("fecha_creacion").IsRequired();
             entity.Property(e => e.ModificadoPor).HasColumnName("modificado_por").HasMaxLength(150);

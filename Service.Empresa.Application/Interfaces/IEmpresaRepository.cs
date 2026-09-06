@@ -12,6 +12,8 @@ public interface IEmpresaRepository
     Task<(List<Domain.Entities.Empresa> items, int total)> ObtenerConFiltrosYPaginacionAsync(
         string? ruc, string? razonSocial, string? codigoRegimenTributario,
         Guid idUsuario, int pageNumber, int pageSize, CancellationToken cancellationToken);
+    Task<List<DTOs.Empresa.EmpresaConLimitesDTO>> ObtenerEmpresasConLimitesPorUsuarioAsync(
+        Guid idUsuario, int anio, bool esAdmin, CancellationToken cancellationToken = default);
     Task<bool> RucDisponibleAsync(string ruc, string creadoPor, Guid? excludeId);
     Task AgregarAsync(Domain.Entities.Empresa empresa);
     Task CommitAsync();

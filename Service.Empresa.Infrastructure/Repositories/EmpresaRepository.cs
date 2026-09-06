@@ -61,6 +61,71 @@ public class EmpresaRepository : IEmpresaRepository
         return (items, total);
     }
 
+    public async Task<List<Application.DTOs.Empresa.EmpresaConLimitesDTO>> ObtenerEmpresasConLimitesPorUsuarioAsync(
+        Guid idUsuario, int anio, bool esAdmin, CancellationToken cancellationToken = default)
+    {
+        IQueryable<Domain.Entities.Empresa> empresasQuery;
+
+        if (esAdmin)
+        {
+            empresasQuery = _context.Empresa.Where(e => e.Activo);
+        }
+        else
+        {
+            var empresasDelUsuario = _context.UsuarioEmpresa
+                .Where(ue => ue.IdUsuario == idUsuario && ue.Activo)
+                .Select(ue => ue.IdEmpresa);
+
+            empresasQuery = _context.Empresa
+                .Where(e => e.Activo && empresasDelUsuario.Contains(e.IdEmpresa));
+        }
+
+        var empresas = await empresasQuery
+            .OrderBy(e => e.RazonSocial)
+            .ToListAsync(cancellationToken);
+
+        var codigosRegimen = empresas.Select(e => e.CodigoRegimenTributario).Distinct().ToList();
+
+        var regimenes = await _context.RegimenTributario
+            .Where(r => codigosRegimen.Contains(r.Codigo) && r.Activo)
+            .ToDictionaryAsync(r => r.Codigo, r => r.Descripcion, cancellationToken);
+
+        var limites = await _context.RegimenTributarioLimite
+            .Where(l => codigosRegimen.Contains(l.CodigoRegimenTributario) && l.Anio == anio && l.Activo)
+            .ToDictionaryAsync(l => l.CodigoRegimenTributario, cancellationToken);
+
+        var resultado = new List<Application.DTOs.Empresa.EmpresaConLimitesDTO>();
+
+        foreach (var emp in empresas)
+        {
+            var regDesc = regimenes.GetValueOrDefault(emp.CodigoRegimenTributario) ?? emp.CodigoRegimenTributario;
+            limites.TryGetValue(emp.CodigoRegimenTributario, out var lim);
+
+            var item = new Application.DTOs.Empresa.EmpresaConLimitesDTO
+            {
+                IdEmpresa = emp.IdEmpresa,
+                Ruc = emp.Ruc,
+                RazonSocial = emp.RazonSocial,
+                NombreComercial = emp.NombreComercial,
+                CodigoRegimenTributario = emp.CodigoRegimenTributario,
+                RegimenDescripcion = regDesc,
+                Anio = anio,
+                ValorUit = lim?.ValorUit ?? 0,
+                LimiteMensualVentas = lim?.LimiteMensualVentas,
+                LimiteMensualCompras = lim?.LimiteMensualCompras,
+                LimiteAnualVentas = lim?.LimiteAnualVentas,
+                LimiteAnualCompras = lim?.LimiteAnualCompras,
+                LimiteAnualVentasUit = lim?.LimiteAnualVentasUit,
+                VentasSinLimite = emp.CodigoRegimenTributario.Equals("RG", StringComparison.OrdinalIgnoreCase) || (lim != null && lim.LimiteAnualVentas == null && lim.LimiteAnualVentasUit == null),
+                ComprasSinLimite = emp.CodigoRegimenTributario.Equals("RG", StringComparison.OrdinalIgnoreCase) || emp.CodigoRegimenTributario.Equals("RMT", StringComparison.OrdinalIgnoreCase) || (lim != null && lim.LimiteAnualCompras == null)
+            };
+
+            resultado.Add(item);
+        }
+
+        return resultado;
+    }
+
     public async Task<bool> RucDisponibleAsync(string ruc, string creadoPor, Guid? excludeId = null)
     {
         var query = _context.Empresa

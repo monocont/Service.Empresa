@@ -9,6 +9,7 @@ using Service.Empresa.Application.Interfaces;
 using Service.Empresa.Application.Queries.Empresa.ListarEmpresas;
 using Service.Empresa.Application.Queries.Empresa.ObtenerEmpresaPorId;
 using Service.Empresa.Application.Queries.Empresa.ObtenerEmpresaPorRuc;
+using Service.Empresa.Application.Queries.Empresa.ObtenerEmpresasConLimites;
 using Service.Empresa.Application.Queries.Empresa.ValidarAccesoEmpresa;
 
 namespace Service.Empresa.API.Controllers;
@@ -128,6 +129,23 @@ public class EmpresaController : ControllerBase
         var query = new ValidarAccesoEmpresaQuery
         {
             Ruc = ruc,
+            IdUsuario = ObtenerIdUsuario(),
+            EsAdmin = EsAdmin()
+        };
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Lista las empresas a las que tiene acceso el usuario autenticado junto con sus límites de régimen para el año consultado.
+    /// Consumido por Service.Operaciones para el control de límites tributarios.
+    /// </summary>
+    [HttpGet("usuario-empresas-limites")]
+    public async Task<IActionResult> ListarEmpresasConLimites([FromQuery] int anio)
+    {
+        var query = new ObtenerEmpresasConLimitesQuery
+        {
+            Anio = anio > 0 ? anio : DateTime.UtcNow.Year,
             IdUsuario = ObtenerIdUsuario(),
             EsAdmin = EsAdmin()
         };
